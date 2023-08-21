@@ -1,7 +1,6 @@
 import { test, expect, chromium, firefox } from "@playwright/test";
 const path = require("path");
 test.describe("RegressionSuite", () => {
-
   test("Login to Ebayy", async ({ page }) => {
     await page.goto("https://www.ebay.com/");
 
@@ -16,26 +15,42 @@ test.describe("RegressionSuite", () => {
 
     await page.locator("//*[@id='gh-ug']//*[text()='Sign in']").click();
 
-
-    await expect(page.locator("//button[@id='signin-continue-btn']")).toBeEditable({timeout:3000});
+    await expect(
+      page.locator("//button[@id='signin-continue-btn']")
+    ).toBeEditable({ timeout: 3000 });
 
     await page
-    .locator("//input[@id='userid']")
-    .waitFor({ state: "attached", timeout: 10000 });
+      .locator("//input[@id='userid']")
+      .waitFor({ state: "attached", timeout: 10000 });
 
-    await page.locator("//input[@id='userid']").type("farukakyol441@gmail.com");
-  
-      await page.locator("//button[@id='signin-continue-btn']").click();
+    await page.locator("//input[@id='userid']").type("faak_8271");
 
+    await page.locator("//button[@id='signin-continue-btn']").click();
 
+    await page.locator("#pass").waitFor({ state: "visible", timeout: 10000 });
+    await page.locator("#pass").click();
+    await page.locator("#pass").type("Farukakyol1");
+    await page.locator("#sgnBt").click();
+    await page
+      .locator("//*[@title='My eBay']")
+      .waitFor({ state: "visible", timeout: 10000 });
+    await page
+      .locator("//button[@id='gh-ug']")
+      .waitFor({ state: "visible", timeout: 10000 });
+    await page
+      .locator("//button[@id='gh-ug']")
+      .waitFor({ state: "visible", timeout: 10000 });
+    await page.locator("//button[@id='gh-ug']").hover();
+
+    await page.locator("//a[text()='Sign out']").click();
+
+    await expect(page.locator("#signout-banner-text")).toContainText(
+      "You've signed out.",
+      { timeout: 10000 }
+    );
 
     await page.waitForTimeout(3000);
-
-
-
   });
-
-
 
   test("Login to Ebay", async ({ page }) => {
     await page.goto("https://www.ebay.com/");
@@ -87,18 +102,14 @@ test.describe("RegressionSuite", () => {
 
     await page.locator("//*[@id='gh-ug']//*[text()='Sign in']").click();
 
-
     await page
-    .locator("//input[@id='userid']")
-    .waitFor({ state: "visible", timeout: 10000 });
+      .locator("//input[@id='userid']")
+      .waitFor({ state: "visible", timeout: 10000 });
     //await page.waitForTimeout(5000);
 
     await page.locator("//input[@id='userid']").type("sdasdassdasda");
-  
+
     await page.waitForTimeout(5000);
-
-
-
   });
 
   test("should upload a test file", async ({ page }) => {
