@@ -1,4 +1,6 @@
 import { test, expect, chromium, firefox } from "@playwright/test";
+import HomePage from "../pages/home.page";
+import LandingPage from "../pages/landing.page";
 const path = require("path");
 test.describe("RegressionSuite", () => {
   test("Login to Ebayy", async ({ page }) => {
@@ -158,5 +160,14 @@ test.describe("RegressionSuite", () => {
     await expect(page.locator("#wfu_messageblock_header_1_1")).toContainText(
       "uploaded successfully"
     );
+  });
+
+  test("should upload2 a test file on a hidden input field", async ({
+    page,
+  }) => {
+
+
+
+
   });
 });
