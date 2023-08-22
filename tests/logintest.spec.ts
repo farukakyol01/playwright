@@ -8,11 +8,17 @@ test.describe("RegressionSuite", () => {
   let landingPage: LandingPage;
   let loginPage: LoginPage;
 
-  test("Login to Ebay", async ({ page }) => {
+  test.beforeEach(async({page})=>{
     landingPage = new LandingPage(page);
     loginPage = new LoginPage(page);
-
     landingPage.navigate();
+
+  })
+
+  test("Login to Ebay", async ({ page }) => {
+    
+
+    
     //await page.waitForTimeout(3000);
     await expect(page).toHaveTitle(
       "Electronics, Cars, Fashion, Collectibles & More | eBay"
@@ -39,7 +45,7 @@ test.describe("RegressionSuite", () => {
     await loginPage.submitButton.click();
 
 
-    
+
     await page
       .locator("//*[@title='My eBay']")
       .waitFor({ state: "visible", timeout: 10000 });
@@ -58,6 +64,6 @@ test.describe("RegressionSuite", () => {
       { timeout: 10000 }
     );
 
-    await page.waitForTimeout(3000);
+    //await page.waitForTimeout(3000);
   });
 });

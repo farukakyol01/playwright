@@ -10,7 +10,7 @@ class LandingPage {
 
   async navigate(){
 
-    await this.page.goto('https://www.ebay.com/');
+    await this.page.goto('/');
   }
 
 }
